@@ -1,2 +1,2 @@
-# Lassocox and CV
+# Lassocox and Cross-validation using the Lassocox package
 Repository for lasso cox regression analysis in R and risk score estimation using validation cohorts

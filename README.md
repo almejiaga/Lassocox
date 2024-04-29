@@ -1,8 +1,13 @@
-# Lassocox and Cross-validation using the Lassocox package
-Repository for lasso cox regression analysis in R using normalized 3 data from:
+Lassocox and Cross-validation using the Lassocox package
+This repository contains code for performing lasso Cox regression analysis in R using normalized data. The analysis involves two main components:
 
-1. Genotype expression matrix structure
-First column is the IDs (Ensembl, gene, etc) and each columns represents an individual
+## 1. Genotype Expression Matrix Structure
+The genotype expression matrix structure consists of the following format:
+
+First column: IDs (Ensembl, gene, etc.)
+Subsequent columns: Each column represents an individual sample with their corresponding gene expression levels.
+Example:
+
 ```
 	Ensembl_ID	TCGA1		TCGA2		TCGA3		TCGA4	
 ENSG00000000003.13	11.04916787	9.665335917	10.01262454	11.14784089	
@@ -16,9 +21,15 @@ ENSG00000001461.15	10.69348696	8.864186145	9.618385502	9.958552715
 ENSG00000001497.15	11.38046107	10.97441459	11.62981194	10.97226185	
 ```
 
-2. Survival data structure
+## 2. Survival Data Structure
+The survival data structure consists of the following format:
 
-First colum is the samples ID (same IDs as the expression matrix columns), 0 means alive, 1 means dead and the OS.time is given in months
+First column: Sample IDs (same IDs as the expression matrix columns)
+Second column: Indicates survival status (0: alive, 1: dead)
+Third column: Additional patient information (e.g., patient ID)
+Fourth column: Overall Survival (OS) time in months.
+Example:
+
 ```
 sample			OS	_PATIENT	OS.time
 TCGA-VD-A8KM-01A	0	TCGA-VD-A8KM	4
@@ -35,6 +46,18 @@ TCGA-WC-A88A-01A	1	TCGA-WC-A88A	82
 TCGA-VD-AA8P-01A	0	TCGA-VD-AA8P	86
 TCGA-VD-A8KD-01A	1	TCGA-VD-A8KD	114
 ```
+## 3. Outputs
+
+ a) partial likelihood deviation found in the 5 fold CV
+
+  ![grafico1LASSOcolorrectalredid](https://github.com/almejiaga/Lassocox/assets/124840761/3ad54acf-55f3-4bfb-a667-d9310d8b64c9)
+
+  b) coefficient pathway for each significant (non-zero gene)
+
+  ![grafico2LASSOcolorrectal](https://github.com/almejiaga/Lassocox/assets/124840761/84fad7ca-2fd2-4031-abfd-7851683bd509)
+
+
+
 
 3. Running the script
 

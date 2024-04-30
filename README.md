@@ -1,7 +1,7 @@
 Lassocox and Cross-validation using the Lassocox package
-This repository contains code for performing lasso Cox regression analysis in R using normalized data. The analysis involves two main components:
+This repository contains code for performing lasso Cox regression analysis in R using normalized data. The analysis involves two main inputs:
 
-## 1. Genotype Expression Matrix Structure
+## 1. Gene Expression Matrix 
 The genotype expression matrix structure consists of the following format:
 
 First column: IDs (Ensembl, gene, etc.)
@@ -21,7 +21,7 @@ ENSG00000001461.15	10.69348696	8.864186145	9.618385502	9.958552715
 ENSG00000001497.15	11.38046107	10.97441459	11.62981194	10.97226185	
 ```
 
-## 2. Survival Data Structure
+## 2. Survival Data 
 The survival data structure consists of the following format:
 
 First column: Sample IDs (same IDs as the expression matrix columns)
@@ -55,8 +55,6 @@ TCGA-VD-A8KD-01A	1	TCGA-VD-A8KD	114
   b) coefficient pathway for each significant (non-zero gene)
 
   ![grafico2LASSOcolorrectal](https://github.com/almejiaga/Lassocox/assets/124840761/84fad7ca-2fd2-4031-abfd-7851683bd509)
-
-
 
 
 3. Running the script

@@ -46,7 +46,12 @@ TCGA-WC-A88A-01A	1	TCGA-WC-A88A	82
 TCGA-VD-AA8P-01A	0	TCGA-VD-AA8P	86
 TCGA-VD-A8KD-01A	1	TCGA-VD-A8KD	114
 ```
-## 3. Outputs
+
+## 3. Running the script
+
+Rscript script.R --gene-matrix gene_expression_matrix.txt --survival survival_data.txt
+
+## 4. Outputs
 
  a) partial likelihood deviation found in the 5 fold CV
 
@@ -57,7 +62,6 @@ TCGA-VD-A8KD-01A	1	TCGA-VD-A8KD	114
   ![grafico2LASSOcolorrectal](https://github.com/almejiaga/Lassocox/assets/124840761/84fad7ca-2fd2-4031-abfd-7851683bd509)
 
 
-3. Running the script
 
 
 

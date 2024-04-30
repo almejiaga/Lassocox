@@ -1,24 +1,45 @@
-# Load the RLassoCox package and required datasets
-BiocManager::install("RLassoCox")
+# Load required libraries
+library(BiocManager)
 library(RLassoCox)
+library(readr)
+library(readxl)
 data(mRNA_matrix)
 data(dGMMirGraph)
-data(survData) 
+data(survData)
+# Parse command-line arguments
+args <- commandArgs(trailingOnly = TRUE)
+gene_matrix_flag <- "--gene-matrix"
+survival_flag <- "--survival"
+gene_expression_file <- NULL
+survival_data_file <- NULL
+
+# Check for --gene-matrix flag
+if (gene_matrix_flag %in% args) {
+  gene_matrix_index <- which(args == gene_matrix_flag)
+  gene_expression_file <- args[gene_matrix_index + 1]
+}
+
+# Check for --survival flag
+if (survival_flag %in% args) {
+  survival_index <- which(args == survival_flag)
+  survival_data_file <- args[survival_index + 1]
+}
+
+# Check if both files are provided
+if (is.null(gene_expression_file) || is.null(survival_data_file)) {
+  stop("Both gene expression matrix and survival data files must be provided.")
+}
 
 # Read and prepare mRNA expression data
-library(readr)
-TCGA_UVM_htseq_counts <- read_delim("C:/Users/Genmol1/Downloads/TCGA-UVM.htseq_counts.tsv/TCGA-UVM.htseq_counts.tsv", 
-                                    delim = "\t", escape_double = FALSE, 
-                                    trim_ws = TRUE)
+TCGA_UVM_htseq_counts <- read_delim(gene_expression_file, delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 expression <- as.data.frame(TCGA_UVM_htseq_counts)
 rownames(expression) <- expression$Ensembl_ID
 expressiondata <- expression[, 2:81]
-DE_Z = t(scale(t(expressiondata)))
+DE_Z <- t(scale(t(expressiondata)))
 expresionlista <- t(DE_Z)
 
 # Read and prepare survival data
-TCGA_UVM_survival_data <- read_delim("C:/Users/Genmol1/Downloads/TCGA-UVM.survival_data.txt", 
-                                     delim = "\t", escape_double = FALSE, 
+TCGA_UVM_survival_data <- read_delim(survival_data_file, delim = "\t", escape_double = FALSE, 
                                      col_types = cols(OS = col_factor(levels = c("0", "1")), OS.time = col_integer()), 
                                      trim_ws = TRUE)
 survival <- as.data.frame(TCGA_UVM_survival_data)
